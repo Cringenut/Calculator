@@ -26,6 +26,7 @@ if ($payment_method === 'equal_installments') {
     echo '<div class="result">';
     echo 'Raty malejące:<br>';
 
+    echo '<div class="scroll">';
     for ($i = 1; $i <= $num_payments; $i++) {
         $interest_payment = $amount * $monthly_interest_rate;
         $monthly_payment = $principal_payment + $interest_payment;
@@ -34,7 +35,7 @@ if ($payment_method === 'equal_installments') {
 
         echo 'Rata ' . $i . ': ' . number_format($monthly_payment, 2) . ' PLN<br>';
     }
-
+    echo '</div>';
     echo 'Całkowita kwota do spłaty: ' . number_format($total_payment, 2) . ' PLN';
     echo '</div>';
 }
