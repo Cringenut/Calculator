@@ -94,3 +94,22 @@ input[type="submit"] {
     border-radius: 50%;
     margin-right: 5px;
 }
+
+*:focus {
+    outline: none;
+}
+
+.scroll {
+    max-height:250px;
+    overflow:auto;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
