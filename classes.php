@@ -59,7 +59,7 @@ class calculator_loan extends calculator_abstract
             $total_payment = 0;
 
             echo '<div class="result">';
-            echo 'Raty malejące:<br>';
+            echo getTextInLanguage("Decreasing_installments", getLanguageCookie(), "Malejące raty").':<br>';
 
             echo '<div class="scroll">';
             for ($i = 1; $i <= $num_payments; $i++) {
@@ -68,10 +68,10 @@ class calculator_loan extends calculator_abstract
                 $amount -= $principal_payment;
                 $total_payment += $monthly_payment;
 
-                echo 'Rata ' . $i . ': ' . number_format($monthly_payment, 2) . ' PLN<br>';
+                echo getTextInLanguage("Payment", getLanguageCookie(), "Rata") . " " . $i . ': ' . number_format($monthly_payment, 2) . ' PLN<br>';
             }
             echo '</div>';
-            echo 'Całkowita kwota do spłaty: ' . number_format($total_payment, 2) . ' PLN';
+            echo  getTextInLanguage("Total_Interest", getLanguageCookie(), "Całkowita kwota do spłaty").': ' . number_format($total_payment, 2) . ' PLN';
             echo '</div>';
         }
     }
@@ -115,7 +115,7 @@ class calculator_investment extends calculator_abstract
         $total_value = round($compound_interest, 2);
 
         echo '<div class="result">';
-        echo 'Przyszła wartość inwestycji: ' . number_format($total_value, 2) . ' PLN';
+        echo  getTextInLanguage("Future_value", getLanguageCookie(), "Przyszła wartość inwestycji"). ': ' . number_format($total_value, 2) . ' PLN';
         echo '</div>';
     }
 }
@@ -170,7 +170,7 @@ class calculator_currency extends calculator_abstract
         if ($from_currency == $to_currency)
         {
             echo '<div class="result">';
-            echo 'Przeliczona kwota: ' . $amount . ' ' . $from_currency . ' = ' . $amount . ' ' . $to_currency;
+            echo  getTextInLanguage("Converted_amount", getLanguageCookie(), "Przeliczona kwota").': ' . $amount . ' ' . $from_currency . ' = ' . $amount . ' ' . $to_currency;
             echo '</div>';
 
             return;

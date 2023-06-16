@@ -43,19 +43,7 @@ function getLanguageCookie()
 
 function getTextInLanguage($name, $lang, $original)
 {
-    $connect = @mysqli_connect('localhost', 'root', '', 'language_db');
-    if (!$connect)
-    {
-        echo $original;
-        return;
-    }
-
     $con = mysqli_connect('localhost', 'root', '', 'language_db');
-    if (!$con)
-    {
-        echo $original;
-        return;
-    }
 
     if ($lang == "polish")
     {
