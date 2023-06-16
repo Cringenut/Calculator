@@ -1,8 +1,8 @@
 .btn {
     position: absolute;
+    background-color: transparent;
     background-image: url("poland.png");
     background-size: 100% 100%;
-    background-color: #4CAF50;
     height: 5vh;
     width: 5vh;
     border: none;
@@ -10,6 +10,9 @@
 .drop {
     position: relative;
     display: inline-block;
+
+    top: 790px;
+    left: 10px;
 }
 .drop-content {
     display: none;
@@ -31,20 +34,38 @@
 .btn-language {
     cursor: pointer;
     position: absolute;
-    background: darkblue;
+    background-size: 100% 100%;
     height: 5vh;
     width: 5vh;
-    border: none;
 
-    transform: translate(0%, 0%);
+    transform: translate(-50%, -50%);
 }
 
 .btn-language-parent {
-    cursor: pointer;
     position: absolute;
-    height: 5vh;
+    background: none;
+    height: 6vh;
     width: 5vh;
     border: none;
 
+
     transform: translate(0%, -100%);
+}
+
+.github {
+    position: absolute;
+}
+
+.github-logo {
+    position: relative;
+    display: inline-block;
+
+    height: 5.2vh;
+    width: 5.2vh;
+
+    background-size: 100% 100%;
+    background-image: url(github-mark.png);
+
+    top: 770px;
+    left: 70px;
 }

@@ -4,10 +4,6 @@ require "functions.php";
 
 setLanguageCookie();
 
-if (isset($_POST['lg']))
-{
-    switchLanguageCookie();
-}
 ?>
 
 <!DOCTYPE html>
@@ -28,14 +24,21 @@ if (isset($_POST['lg']))
 
     <h1>Kalkulator finansowy</h1>
 
-    <form method="post">
+    <form method="get">
         <div class="drop">
-            <button class="btn"></button>
+            <button class="btn"
+                    style="background-image:
+                            url(<?php if (getLanguageCookie() == "polish") { echo "visual/poland.png"; } else { echo "visual/united-states.png";}?>"></button>
             <div class="drop-content">
-                <button class="btn-language-parent"></button>
+                <button class="btn-language-parent"  id="<?php rand() ?>" name="languge">
+                    <a href="language.php" class="btn-language" style="background-color: red"></a>
+                </button>
             </div>
         </div>
     </form>
+    <div class="github">
+        <a href="https://github.com/JuliaWasilewska" class="github-logo"></a>
+    </div>
 
 
 

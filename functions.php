@@ -1,5 +1,9 @@
 <?php
 
+if (!isset($_SESSION['calculator']))
+{
+    $_SESSION['calculator'] = null;
+}
 function setLanguageCookie()
 {
     if (isset($_COOKIE["language"]) != null)
