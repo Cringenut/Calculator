@@ -1,8 +1,11 @@
 <?php
 
 require "functions.php";
+require "classes.php";
 
 setLanguageCookie();
+
+session_start();
 
 ?>
 
@@ -22,9 +25,9 @@ setLanguageCookie();
 
 <div class="bg">
 
-    <h1>Kalkulator finansowy</h1>
+    <h1 style="height: 14px">Kalkulator finansowy</h1>
 
-    <form method="get">
+    <form method="get" style="height: 0">
         <div class="drop">
             <button class="btn"
                     style="background-image:
@@ -65,8 +68,17 @@ setLanguageCookie();
             </form>
 
             <?php
-            if (isset($_POST['calculate_loan'])) {
-                require "kredytowy.php";
+            if (isset($_SESSION['calculator']) && get_class($_SESSION['calculator']) == 'calculator_loan')
+            {
+                $_SESSION['calculator']->calculate();
+            }
+            else if (isset($_POST['calculate_loan'])) {
+                if(!isset($_SESSION['calculator']))
+                {
+                    $_SESSION['calculator'] = new calculator_loan();
+                    $t = $_SESSION['calculator'];
+                    $_SESSION['calculator']->calculate();
+                }
             }
             ?>
         </div>
@@ -90,7 +102,12 @@ setLanguageCookie();
 
             <?php
             if (isset($_POST['calculate_investment'])) {
-                require "lokat.php";
+                if(!isset($_SESSION['calculator']))
+                {
+                    $_SESSION['calculator'] = new calculator_investment();
+                    $t = $_SESSION['calculator'];
+                    $_SESSION['calculator']->calculate();
+                }
             }
             ?>
         </div>
@@ -125,7 +142,13 @@ setLanguageCookie();
             <?php
 
             if (isset($_POST['calculate_currency'])) {
-                require "walutowy.php";
+                if(!isset($_SESSION['calculator']))
+                {
+                    echo "created";
+                    $_SESSION['calculator'] = new calculator_currency();
+                    $t = $_SESSION['calculator'];
+                    $_SESSION['calculator']->calculate();
+                }
             }
             ?>
         </div>
