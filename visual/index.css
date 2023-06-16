@@ -113,3 +113,10 @@ input::-webkit-inner-spin-button {
 input[type=number] {
     -moz-appearance: textfield;
 }
+
+.box-language-github {
+    display: flex;
+
+    height: 6vh;
+    width: 6vh;
+}

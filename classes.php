@@ -144,6 +144,24 @@ class calculator_currency extends calculator_abstract
         }
     }
 
+    private function kurstWalutaPln($waluta)
+    {
+        $con = mysqli_connect('localhost', 'root', '', 'bank_db');
+        $sql = 'SELECT kurs FROM currencies WHERE waluta = '."\"$waluta\"";
+        $result = mysqli_query($con, $sql);
+
+        return floatval(implode(mysqli_fetch_all($result)[0]));
+    }
+
+    private function kurstPlnWaluta($waluta)
+    {
+        $con = mysqli_connect('localhost', 'root', '', 'bank_db');
+        $sql = 'SELECT kurs FROM currencies WHERE waluta = '."\"$waluta\"";
+        $result = mysqli_query($con, $sql);
+
+        return round(1/floatval(implode(mysqli_fetch_all($result)[0]))*100)/100;
+    }
+
     function calculate()
     {
         $amount = $this->class_amount;
@@ -161,10 +179,12 @@ class calculator_currency extends calculator_abstract
 
         // Przeliczanie waluty
         $conversion_rates = [
-            'PLN-USD' => kurstPlnWaluta('USD'), // Kurs waluty PLN do USD
-            'USD-PLN' => kurstWalutaPln('USD'), // Kurs waluty USD do PLN
-            'PLN-EUR' => kurstPlnWaluta('EUR'), // Kurs waluty PLN do EUR
-            'EUR-PLN' => kurstWalutaPln('EUR')  // Kurs waluty EUR do PLN
+            'PLN-USD' => $this->kurstPlnWaluta('USD'), // Kurs waluty PLN do USD
+            'USD-PLN' => $this->kurstWalutaPln('USD'), // Kurs waluty USD do PLN
+            'PLN-EUR' => $this->kurstPlnWaluta('EUR'), // Kurs waluty PLN do EUR
+            'EUR-PLN' => $this->kurstWalutaPln('EUR'),  // Kurs waluty EUR do PLN
+            'EUR-USD' => round($this->kurstWalutaPln('EUR')/$this->kurstWalutaPln('USD')*100)/100,  // Kurs waluty EUR do USD
+            'USD-EUR' => round($this->kurstWalutaPln('USD')/$this->kurstWalutaPln('EUR')*100)/100  // Kurs waluty USD do EUR
         ];
 
         $currency_pair = $from_currency . '-' . $to_currency;

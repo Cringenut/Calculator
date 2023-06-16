@@ -23,8 +23,6 @@ session_start();
 </head>
 <body background="visual/background.png">
 
-    <div class="bg"></div>
-
     <h1 style="height: 14px">Kalkulator finansowy</h1>
 
     <form method="get" style="height: 0">
