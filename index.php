@@ -1,7 +1,20 @@
+<?php
+
+require "functions.php";
+
+setLanguageCookie();
+
+if (isset($_POST['lg']))
+{
+    switchLanguageCookie();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="">
 <head>
-    <link href="index.css" rel="stylesheet" type="text/css">
+    <link href="visual/index.css" rel="stylesheet" type="text/css">
+    <link href="visual/language.css" rel="stylesheet" type="text/css">
     <title>Kalkulator finansowy</title>
     <style>
 
@@ -9,11 +22,22 @@
 
     </style>
 </head>
-
+<body>
 
 <div class="bg">
 
     <h1>Kalkulator finansowy</h1>
+
+    <form method="post">
+        <div class="drop">
+            <button class="btn"></button>
+            <div class="drop-content">
+                <button class="btn-language-parent"></button>
+            </div>
+        </div>
+    </form>
+
+
 
     <div class="container">
         <div class="calculator">
@@ -96,7 +120,6 @@
             </form>
 
             <?php
-            require "functions.php";
 
             if (isset($_POST['calculate_currency'])) {
                 require "walutowy.php";
@@ -107,4 +130,5 @@
 </div>
 
 
+</body>
 </html>

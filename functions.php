@@ -1,5 +1,37 @@
 <?php
 
+function setLanguageCookie()
+{
+    if (isset($_COOKIE["language"]) != null)
+    {
+        return;
+    }
+    setcookie("language", "polish");
+}
+
+function switchLanguageCookie()
+{
+    if (!isset($_COOKIE["language"]))
+    {
+        return;
+    }
+    var_dump(getLanguageCookie());
+    if (getLanguageCookie() == "polish")
+    {
+        setcookie("language", "english");
+    }
+    else
+    {
+        setcookie("language", "polish");
+    }
+
+    var_dump($_COOKIE["language"]);
+}
+function getLanguageCookie()
+{
+    return $_COOKIE["language"];
+}
+
 function kurstWalutaPln($waluta)
 {
     $con = mysqli_connect('localhost', 'root', '', 'bank_db');

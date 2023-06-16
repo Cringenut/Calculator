@@ -1,0 +1,50 @@
+.btn {
+    position: absolute;
+    background-image: url("poland.png");
+    background-size: 100% 100%;
+    background-color: #4CAF50;
+    height: 5vh;
+    width: 5vh;
+    border: none;
+}
+.drop {
+    position: relative;
+    display: inline-block;
+}
+.drop-content {
+    display: none;
+    position: absolute;
+    height: 5vh;
+    width: 5vh;
+    z-index: 1;
+}
+
+.drop:hover .drop-content {
+    display: block;
+}
+
+.img-language {
+    height: 5vh;
+    width: 5vh;
+}
+
+.btn-language {
+    cursor: pointer;
+    position: absolute;
+    background: darkblue;
+    height: 5vh;
+    width: 5vh;
+    border: none;
+
+    transform: translate(0%, 0%);
+}
+
+.btn-language-parent {
+    cursor: pointer;
+    position: absolute;
+    height: 5vh;
+    width: 5vh;
+    border: none;
+
+    transform: translate(0%, -100%);
+}

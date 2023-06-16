@@ -12,7 +12,7 @@ h1 {
 
 .bg {
     position: absolute;
-    background-image: url("background.png");
+    background-image: url("visual/background.png");
 
     opacity: 100%;
 
