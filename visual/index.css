@@ -14,14 +14,14 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 15px;
+    margin-top: 45px;
     gap: 2vh;
 }
 
 .calculator {
     outline: 0.4vh #E0D68A solid;
 
-    padding: 20px;
+    padding: 15px;
     width: 400px;
     background-color: #473144;
 }

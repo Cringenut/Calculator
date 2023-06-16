@@ -19,8 +19,6 @@ class calculator_loan extends calculator_abstract
         $this->class_interest_rate = $_POST['interest_rate'] / 100;
         $this->class_loan_period = $_POST['loan_period'];
         $this->class_payment_method = $_POST['payment_method'];
-
-        echo "construct";
     }
 
     public function setVar()
@@ -48,9 +46,10 @@ class calculator_loan extends calculator_abstract
             $monthly_payment = ($amount * $monthly_interest_rate) / (1 - pow(1 + $monthly_interest_rate, -$num_payments));
             $total_payment = $monthly_payment * $num_payments;
 
+            //getTextInLanguage("Calculator_investment", getLanguageCookie(), "Kalkulator lokat");
             echo '<div class="result">';
-            echo 'Miesięczna rata: ' . number_format($monthly_payment, 2) . ' PLN<br>';
-            echo 'Całkowita kwota do spłaty: ' . number_format($total_payment, 2) . ' PLN';
+            echo  getTextInLanguage("Monthly_payment", getLanguageCookie(), "Miesięczna rata").': '.number_format($monthly_payment, 2) . ' PLN<br>';
+            echo  getTextInLanguage("Total_interest", getLanguageCookie(), "Całkowita kwota do spłaty") . ': '. number_format($total_payment, 2) . ' PLN';
             echo '</div>';
         } elseif ($payment_method === 'decreasing_installments') {
             // Obliczanie malejących rat
