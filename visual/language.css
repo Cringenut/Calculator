@@ -6,13 +6,23 @@
     height: 5vh;
     width: 5vh;
     border: none;
+
+    left: 2.5vh;
+    top: 1.25vh;
+
+    transform: translate(-50%, -50%);
 }
 .drop {
     position: relative;
     display: inline-block;
 
-    top: 790px;
-    left: 10px;
+    height: 6vh;
+    width: 6vh;
+
+    left: 3vh;
+    top: 4vh;
+
+    transform: translate(-50%, -50%);
 }
 .drop-content {
     display: none;
@@ -63,9 +73,19 @@
     height: 5.2vh;
     width: 5.2vh;
 
+    left: 5.4vh;
+
     background-size: 100% 100%;
     background-image: url(github-mark.png);
+}
 
-    top: 770px;
-    left: 70px;
+.box-language-github {
+    position: absolute;
+    background-color: red;
+
+    display: flex;
+
+    height: 5vh;
+    width: 0;
+
 }
