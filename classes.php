@@ -3,6 +3,7 @@
 abstract class calculator_abstract
 {
     abstract public function calculate();
+    abstract public function setVar();
 }
 
 class calculator_loan extends calculator_abstract
@@ -20,6 +21,17 @@ class calculator_loan extends calculator_abstract
         $this->class_payment_method = $_POST['payment_method'];
 
         echo "construct";
+    }
+
+    public function setVar()
+    {
+        if (isset($_POST['amount']) && isset($_POST['interest_rate']) && isset($_POST['loan_period']) && isset($_POST['payment_method']))
+        {
+            $this->class_amount = $_POST['amount'];
+            $this->class_interest_rate = $_POST['interest_rate'] / 100;
+            $this->class_loan_period = $_POST['loan_period'];
+            $this->class_payment_method = $_POST['payment_method'];
+        }
     }
 
     function calculate()
@@ -66,6 +78,49 @@ class calculator_loan extends calculator_abstract
     }
 }
 
+class calculator_investment extends calculator_abstract
+{
+    private $class_investment_amount;
+    private $class_interest_rate;
+    private $class_compounding_period;
+    private $class_investment_period;
+    public function __construct()
+    {
+        echo "construct";
+        $this->class_investment_amount = $_POST['investment_amount'];
+        $this->class_interest_rate = $_POST['interest_rate'] / 100;;
+        $this->class_compounding_period = $_POST['compounding_period'];
+        $this->class_investment_period = $_POST['investment_period'];
+    }
+
+    public function setVar()
+    {
+        if (isset($_POST['investment_amount']) && isset($_POST['interest_rate']) && isset($_POST['compounding_period']) && isset($_POST['investment_period']))
+        {
+            $this->class_investment_amount = $_POST['investment_amount'];
+            $this->class_interest_rate = $_POST['interest_rate'] / 100;;
+            $this->class_compounding_period = $_POST['compounding_period'];
+            $this->class_investment_period = $_POST['investment_period'];
+        }
+    }
+
+    function calculate()
+    {
+        $investment_amount = $this->class_investment_amount;
+        $interest_rate = $this->class_interest_rate;
+        $compounding_period = $this->class_compounding_period;
+        $investment_period= $this->class_investment_period;
+
+        $num_compoundings = $investment_period * 12 / $compounding_period;
+        $compound_interest = $investment_amount * pow(1 + ($interest_rate / $compounding_period), $num_compoundings);
+        $total_value = round($compound_interest, 2);
+
+        echo '<div class="result">';
+        echo 'Przyszła wartość inwestycji: ' . number_format($total_value, 2) . ' PLN';
+        echo '</div>';
+    }
+}
+
 class calculator_currency extends calculator_abstract
 {
     private $class_amount;
@@ -74,10 +129,21 @@ class calculator_currency extends calculator_abstract
 
     public function __construct()
     {
-        $this->class_amount = $_POST['amount'];
+        $this->class_amount = $_POST['currency_amount'];
         $this->class_from_currency = $_POST['from_currency'];
         $this->class_to_currency = $_POST['to_currency'];
     }
+
+    public function setVar()
+    {
+        if (isset($_POST['currency_amount']) && isset($_POST['from_currency']) && isset($_POST['to_currency']))
+        {
+            $this->class_amount = $_POST['currency_amount'];
+            $this->class_from_currency = $_POST['from_currency'];
+            $this->class_to_currency = $_POST['to_currency'];
+        }
+    }
+
     function calculate()
     {
         $amount = $this->class_amount;
@@ -106,36 +172,6 @@ class calculator_currency extends calculator_abstract
 
         echo '<div class="result">';
         echo 'Przeliczona kwota: ' . $amount . ' ' . $from_currency . ' = ' . $converted_amount . ' ' . $to_currency;
-        echo '</div>';
-    }
-}
-
-class calculator_investment extends calculator_abstract
-{
-    private $class_investment_amount;
-    private $class_interest_rate;
-    private $class_compounding_period;
-    private $class_investment_period;
-    public function __construct()
-    {
-        $this->class_investment_amount = $_POST['amount'];
-        $this->class_interest_rate = $_POST['investment_amount'];
-        $this->class_compounding_period = $_POST['compounding_period'];
-        $this->class_investment_period = $_POST['investment_period'];
-    }
-    function calculate()
-    {
-        $investment_amount = $this->class_investment_amount;
-        $interest_rate = $this->class_interest_rate;
-        $compounding_period = $this->class_compounding_period;
-        $investment_period= $this->class_investment_period;
-
-        $num_compoundings = $investment_period * 12 / $compounding_period;
-        $compound_interest = $investment_amount * pow(1 + ($interest_rate / $compounding_period), $num_compoundings);
-        $total_value = round($compound_interest, 2);
-
-        echo '<div class="result">';
-        echo 'Przyszła wartość inwestycji: ' . number_format($total_value, 2) . ' PLN';
         echo '</div>';
     }
 }

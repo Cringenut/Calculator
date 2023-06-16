@@ -21,9 +21,9 @@ session_start();
 
     </style>
 </head>
-<body>
+<body background="visual/background.png">
 
-<div class="bg">
+    <div class="bg"></div>
 
     <h1 style="height: 14px">Kalkulator finansowy</h1>
 
@@ -68,18 +68,17 @@ session_start();
             </form>
 
             <?php
-            if (isset($_SESSION['calculator']) && get_class($_SESSION['calculator']) == "calculator_loan")
+            if (isset($_SESSION['calculator']) && get_class($_SESSION['calculator']) == "calculator_loan" && isset($_SESSION['button']) && $_SESSION['button'] == "calculate_loan")
             {
+                $_SESSION['calculator']->setVar();
                 $_SESSION['calculator']->calculate();
             }
-            else if (isset($_POST['calculate_loan']) && $_POST['calculate_loan'] == "calculate_loan")
+            else if (isset($_POST['calculate_loan']))
             {
+                $_SESSION['button'] = "calculate_loan";
                 $_SESSION['calculator'] = new calculator_loan();
                 $_SESSION['calculator']->calculate();
-            }
-            foreach ($_POST as $key => $value)
-            {
-                echo $key . ": ". $value . "\n";
+                header( "Location: index.php" );
             }
             ?>
 
@@ -103,19 +102,18 @@ session_start();
             </form>
 
             <?php
-            if (isset($_SESSION['calculator']) && get_class($_SESSION['calculator']) == "calculator_investment")
+            if (isset($_SESSION['calculator']) && get_class($_SESSION['calculator']) == "calculator_investment" && isset($_SESSION['button']) && $_SESSION['button'] == "calculate_investment")
             {
-                echo "1";
+                $_SESSION['calculator']->setVar();
                 $_SESSION['calculator']->calculate();
             }
-            else if (isset($_POST['calculate_investment']) && $_POST['calculate_investment'] == "calculate_investment")
+            else if (isset($_POST['calculate_investment']))
             {
-                echo "2";
-                $_SESSION['calculator'] = new calculator_loan();
+                $_SESSION['button'] = "calculate_investment";
+                $_SESSION['calculator'] = new calculator_investment();
                 $_SESSION['calculator']->calculate();
+                header( "Location: index.php" );
             }
-            echo "3";
-            var_dump($_POST['calculate_investment']);
             ?>
         </div>
     </div>
@@ -125,7 +123,7 @@ session_start();
             <h2>Kalkulator walutowy</h2>
             <form method="post" action="">
                 <label for="amount">Kwota:</label>
-                <input type="number" name="amount" id="amount" required>
+                <input type="number" name="currency_amount" id="currency_amount" required>
 
                 <label for="from_currency">Waluta z:</label>
                 <select name="from_currency" id="from_currency" required>
@@ -147,20 +145,21 @@ session_start();
             </form>
 
             <?php
-            if (isset($_SESSION['calculator']) && get_class($_SESSION['calculator']) == 'calculator_currency' && $_SESSION['button'] == $_POST['id'])
+            if (isset($_SESSION['calculator']) && get_class($_SESSION['calculator']) == "calculator_currency" && isset($_SESSION['button']) && $_SESSION['button'] == "calculate_currency")
             {
-                //$_SESSION['calculator']->calculate();
+                $_SESSION['calculator']->setVar();
+                $_SESSION['calculator']->calculate();
             }
-            else if (isset($_POST['calculate_currency']) && $_POST['calculate_currency'] == "calculate_currency")
+            else if (isset($_POST['calculate_currency']))
             {
-                echo "set";
+                $_SESSION['button'] = "calculate_currency";
                 $_SESSION['calculator'] = new calculator_currency();
-                //$_SESSION['calculator']->calculate();
+                $_SESSION['calculator']->calculate();
+                header( "Location: index.php" );
             }
             ?>
         </div>
     </div>
-</div>
 
 
 </body>
