@@ -14,7 +14,7 @@ session_start();
 <head>
     <link href="visual/index.css" rel="stylesheet" type="text/css">
     <link href="visual/language.css" rel="stylesheet" type="text/css">
-    <title>Kalkulator finansowy</title>
+    <title><?php getTextInLanguage("Title", getLanguageCookie(), "Kalkulator finansowy");?></title>
     <style>
 
 
@@ -23,7 +23,7 @@ session_start();
 </head>
 <body background="visual/background.png">
 
-    <h1 style="height: 14px">Kalkulator finansowy</h1>
+    <h1 style="height: 14px"><?php getTextInLanguage("Title", getLanguageCookie(), "Kalkulator finansowy");?></h1>
 
     <form method="get" style="height: 0">
         <div class="drop">

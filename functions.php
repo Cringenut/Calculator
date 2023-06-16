@@ -40,3 +40,31 @@ function getLanguageCookie()
 {
     return $_COOKIE["language"];
 }
+
+function getTextInLanguage($name, $lang, $original)
+{
+    $con = mysqli_connect('localhost', 'root', '', 'language_db');
+    if (!isset($con))
+    {
+        echo $original;
+        return;
+    }
+
+
+    if ($lang == "polish")
+    {
+        $sql = 'SELECT polish FROM languages WHERE field = '."\"$name\"";
+        $result = mysqli_query($con, $sql);
+        echo implode(mysqli_fetch_all($result)[0]);
+    }
+    else if ($lang == "english")
+    {
+        $sql = 'SELECT english FROM languages WHERE field = '."\"$name\"";
+        $result = mysqli_query($con, $sql);
+        echo implode(mysqli_fetch_all($result)[0]);
+    }
+    else
+    {
+        echo $original;
+    }
+}
