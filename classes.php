@@ -68,11 +68,21 @@ class calculator_loan extends calculator_abstract
 
 class calculator_currency extends calculator_abstract
 {
+    private $class_amount;
+    private $class_from_currency;
+    private $class_to_currency;
+
+    public function __construct()
+    {
+        $this->class_amount = $_POST['amount'];
+        $this->class_from_currency = $_POST['from_currency'];
+        $this->class_to_currency = $_POST['to_currency'];
+    }
     function calculate()
     {
-        $amount = $_POST['amount'];
-        $from_currency = $_POST['from_currency'];
-        $to_currency = $_POST['to_currency'];
+        $amount = $this->class_amount;
+        $from_currency = $this->class_from_currency;
+        $to_currency = $this->class_to_currency;
 
         if ($from_currency == $to_currency)
         {
@@ -102,12 +112,23 @@ class calculator_currency extends calculator_abstract
 
 class calculator_investment extends calculator_abstract
 {
+    private $class_investment_amount;
+    private $class_interest_rate;
+    private $class_compounding_period;
+    private $class_investment_period;
+    public function __construct()
+    {
+        $this->class_investment_amount = $_POST['amount'];
+        $this->class_interest_rate = $_POST['investment_amount'];
+        $this->class_compounding_period = $_POST['compounding_period'];
+        $this->class_investment_period = $_POST['investment_period'];
+    }
     function calculate()
     {
-        $investment_amount = $_POST['investment_amount'];
-        $interest_rate = $_POST['interest_rate'] / 100;
-        $compounding_period = $_POST['compounding_period'];
-        $investment_period = $_POST['investment_period'];
+        $investment_amount = $this->class_investment_amount;
+        $interest_rate = $this->class_interest_rate;
+        $compounding_period = $this->class_compounding_period;
+        $investment_period= $this->class_investment_period;
 
         $num_compoundings = $investment_period * 12 / $compounding_period;
         $compound_interest = $investment_amount * pow(1 + ($interest_rate / $compounding_period), $num_compoundings);

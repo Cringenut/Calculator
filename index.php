@@ -64,23 +64,25 @@ session_start();
                     <option value="decreasing_installments">Malejące raty</option>
                 </select>
 
-                <input type="submit" name="calculate_loan" value="Oblicz">
+                <input type="submit" name="calculate_loan" value="Oblicz" id="calculate_loan">
             </form>
 
             <?php
-            if (isset($_SESSION['calculator']) && get_class($_SESSION['calculator']) == 'calculator_loan')
+            if (isset($_SESSION['calculator']) && get_class($_SESSION['calculator']) == "calculator_loan")
             {
                 $_SESSION['calculator']->calculate();
             }
-            else if (isset($_POST['calculate_loan'])) {
-                if(!isset($_SESSION['calculator']))
-                {
-                    $_SESSION['calculator'] = new calculator_loan();
-                    $t = $_SESSION['calculator'];
-                    $_SESSION['calculator']->calculate();
-                }
+            else if (isset($_POST['calculate_loan']) && $_POST['calculate_loan'] == "calculate_loan")
+            {
+                $_SESSION['calculator'] = new calculator_loan();
+                $_SESSION['calculator']->calculate();
+            }
+            foreach ($_POST as $key => $value)
+            {
+                echo $key . ": ". $value . "\n";
             }
             ?>
+
         </div>
         <div class="calculator">
             <h2>Kalkulator lokat</h2>
@@ -97,18 +99,23 @@ session_start();
                 <label for="investment_period">Okres inwestycji (w latach):</label>
                 <input type="number" name="investment_period" id="investment_period" required>
 
-                <input type="submit" name="calculate_investment" value="Oblicz">
+                <input type="submit" name="calculate_investment" value="Oblicz" id="calculate_investment">
             </form>
 
             <?php
-            if (isset($_POST['calculate_investment'])) {
-                if(!isset($_SESSION['calculator']))
-                {
-                    $_SESSION['calculator'] = new calculator_investment();
-                    $t = $_SESSION['calculator'];
-                    $_SESSION['calculator']->calculate();
-                }
+            if (isset($_SESSION['calculator']) && get_class($_SESSION['calculator']) == "calculator_investment")
+            {
+                echo "1";
+                $_SESSION['calculator']->calculate();
             }
+            else if (isset($_POST['calculate_investment']) && $_POST['calculate_investment'] == "calculate_investment")
+            {
+                echo "2";
+                $_SESSION['calculator'] = new calculator_loan();
+                $_SESSION['calculator']->calculate();
+            }
+            echo "3";
+            var_dump($_POST['calculate_investment']);
             ?>
         </div>
     </div>
@@ -136,19 +143,19 @@ session_start();
 
                 </select>
 
-                <input type="submit" name="calculate_currency" value="Przelicz">
+                <input type="submit" name="calculate_currency" value="Oblicz" id="calculate_currency">
             </form>
 
             <?php
-
-            if (isset($_POST['calculate_currency'])) {
-                if(!isset($_SESSION['calculator']))
-                {
-                    echo "created";
-                    $_SESSION['calculator'] = new calculator_currency();
-                    $t = $_SESSION['calculator'];
-                    $_SESSION['calculator']->calculate();
-                }
+            if (isset($_SESSION['calculator']) && get_class($_SESSION['calculator']) == 'calculator_currency' && $_SESSION['button'] == $_POST['id'])
+            {
+                //$_SESSION['calculator']->calculate();
+            }
+            else if (isset($_POST['calculate_currency']) && $_POST['calculate_currency'] == "calculate_currency")
+            {
+                echo "set";
+                $_SESSION['calculator'] = new calculator_currency();
+                //$_SESSION['calculator']->calculate();
             }
             ?>
         </div>
