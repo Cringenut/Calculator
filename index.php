@@ -8,8 +8,6 @@ setLanguageCookie();
 isLanguageDatabaseActive();
 isCurrencyDatabaseActive();
 
-
-
 ?>
 
 <!DOCTYPE html>
@@ -24,18 +22,20 @@ isCurrencyDatabaseActive();
 
     </style>
 </head>
-<body background="visual/background.png">
+<body background="visual/background-image.png">
 
     <h1 style="height: 14px"><?php getTextInLanguage("Title", getLanguageCookie(), "Kalkulator finansowy");?></h1>
 
     <div class="image"></div>
     <div class="box-lang-github">
+        <?php if ($_SESSION['language_db']) { ?>
         <div class="dropdown">
-            <button class="dropbtn" style="background-image: url( <?php if (getLanguageCookie() == "polish") {echo "visual/united-states.png";} else {echo "visual/poland.png";} ?>)"></button>
+            <button class="dropbtn" style="background-image: url( <?php if (getLanguageCookie() != "polish") {echo "visual/united-states.png";} else {echo "visual/poland.png";} ?>)"></button>
             <div class="dropdown-content" st>
-                <a href="language.php" style="background-image: url( <?php if (getLanguageCookie() != "polish") {echo "visual/united-states.png";} else {echo "visual/poland.png";} ?>)"></a>
+                <a href="language.php" style="background-image: url( <?php if (getLanguageCookie() == "polish") {echo "visual/united-states.png";} else {echo "visual/poland.png";} ?>)"></a>
             </div>
         </div>
+        <?php } ?>
         <a href="https://github.com/JuliaWasilewska" class="github">
             <div class="github" style="background-image: url(visual/github-mark-white.png)"></div>
         </a>
