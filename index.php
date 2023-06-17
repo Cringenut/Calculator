@@ -5,7 +5,6 @@ require "classes.php";
 
 session_start();
 setLanguageCookie();
-var_dump(getLanguageCookie());
 isLanguageDatabaseActive();
 
 
@@ -28,23 +27,17 @@ isLanguageDatabaseActive();
 
     <h1 style="height: 14px"><?php getTextInLanguage("Title", getLanguageCookie(), "Kalkulator finansowy");?></h1>
 
-
-    <div class="box-language-github">
-        <form method="get" style="height: 0; width: 0">
-            <div class="drop">
-                <button class="btn"
-                        style="background-image:
-                            url(<?php if (getLanguageCookie() == "polish") { echo "visual/poland.png"; } else { echo "visual/united-states.png";}?>"></button>
-                <div class="drop-content">
-                    <button class="btn-language-parent"  id="<?php rand() ?>" name="languge">
-                        <a href="language.php" class="btn-language" style="background-color: red"></a>
-                    </button>
-                </div>
+    <div class="image"></div>
+    <div class="box-lang-github">
+        <div class="dropdown">
+            <button class="dropbtn"></button>
+            <div class="dropdown-content">
+                <a href="language.php"> 1</a>
             </div>
-        </form>
-        <div class="github">
-            <a href="https://github.com/JuliaWasilewska" class="github-logo"></a>
         </div>
+        <a href="https://github.com/JuliaWasilewska" class="github">
+            <div class="github" style="background-image: url(visual/github-mark-white.png)"></div>
+        </a>
     </div>
 
 
