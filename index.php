@@ -30,9 +30,9 @@ isLanguageDatabaseActive();
     <div class="image"></div>
     <div class="box-lang-github">
         <div class="dropdown">
-            <button class="dropbtn"></button>
-            <div class="dropdown-content">
-                <a href="language.php"> 1</a>
+            <button class="dropbtn" style="background-image: url( <?php if (getLanguageCookie() == "polish") {echo "visual/united-states.png";} else {echo "visual/poland.png";} ?>)"></button>
+            <div class="dropdown-content" st>
+                <a href="language.php" style="background-image: url( <?php if (getLanguageCookie() != "polish") {echo "visual/united-states.png";} else {echo "visual/poland.png";} ?>)"></a>
             </div>
         </div>
         <a href="https://github.com/JuliaWasilewska" class="github">

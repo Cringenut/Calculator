@@ -17,10 +17,10 @@
 }
 
 .dropbtn {
-    background-color: #04AA6D;
+    background-color: transparent;
+    background-size: 100% 100%;
     width: 5vh;
     height: 5vh;
-    color: white;
     font-size: 16px;
     border: none;
 }
@@ -29,15 +29,12 @@
 .dropdown {
     position: relative;
     display: flex;
-
-
 }
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: lightslategrey;
     width: 5vh;
     height: 6vh;
     z-index: 1;
@@ -47,7 +44,7 @@
 
 /* Links inside the dropdown */
 .dropdown-content a {
-    color: black;
+    background-size: 100% 100%;
     width: 5vh;
     height: 5vh;
     text-decoration: none;
