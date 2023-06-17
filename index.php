@@ -7,6 +7,8 @@ setLanguageCookie();
 
 session_start();
 
+isLanguageDatabaseActive();
+
 ?>
 
 <!DOCTYPE html>

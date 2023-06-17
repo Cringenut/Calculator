@@ -1,5 +1,18 @@
 <?php
 
+function isLanguageDatabaseActive()
+{
+    try {
+        $con = mysqli_connect('localhost', 'root', '', 'language_db');
+        $_SESSION['language_db'] = true;
+        return;
+    }
+    catch(Exception $e) {
+        $_SESSION['language_db'] = false;
+        return;
+    }
+}
+
 if (!isset($_SESSION['calculator']))
 {
     $_SESSION['calculator'] = null;
@@ -43,22 +56,5 @@ function getLanguageCookie()
 
 function getTextInLanguage($name, $lang, $original)
 {
-    $con = mysqli_connect('localhost', 'root', '', 'language_db');
 
-    if ($lang == "polish")
-    {
-        $sql = 'SELECT polish FROM languages WHERE field = '."\"$name\"";
-        $result = mysqli_query($con, $sql);
-        echo implode(mysqli_fetch_all($result)[0]);
-    }
-    else if ($lang == "english")
-    {
-        $sql = 'SELECT english FROM languages WHERE field = '."\"$name\"";
-        $result = mysqli_query($con, $sql);
-        echo implode(mysqli_fetch_all($result)[0]);
-    }
-    else
-    {
-        echo $original;
-    }
 }
