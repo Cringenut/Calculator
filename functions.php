@@ -56,5 +56,39 @@ function getLanguageCookie()
 
 function getTextInLanguage($name, $lang, $original)
 {
+    if (!$_SESSION['language_db'])
+    {
+        echo $original;
+        return;
+    }
 
+    $con = mysqli_connect('localhost', 'root', '', 'language_db');
+
+    try {
+        $sql = 'SELECT field FROM languages WHERE field = '."\"$name\"";
+        $result = mysqli_query($con, $sql);
+        if (!isset(mysqli_fetch_all($result)[0]))
+        {
+            throw new Exception();
+        }
+    }
+    catch(Exception $e) {
+        echo $original;
+        $_COOKIE["language"] = "polish";
+        return;
+    }
+
+
+    if ($lang == "polish")
+    {
+        $sql = 'SELECT polish FROM languages WHERE field = '."\"$name\"";
+        $result = mysqli_query($con, $sql);
+        echo implode(mysqli_fetch_all($result)[0]);
+    }
+    else if ($lang == "english")
+    {
+        $sql = 'SELECT english FROM languages WHERE field = '."\"$name\"";
+        $result = mysqli_query($con, $sql);
+        echo implode(mysqli_fetch_all($result)[0]);
+    }
 }

@@ -3,11 +3,12 @@
 require "functions.php";
 require "classes.php";
 
-setLanguageCookie();
-
 session_start();
-
+setLanguageCookie();
+var_dump(getLanguageCookie());
 isLanguageDatabaseActive();
+
+
 
 ?>
 
