@@ -6,6 +6,7 @@ require "classes.php";
 session_start();
 setLanguageCookie();
 isLanguageDatabaseActive();
+isCurrencyDatabaseActive();
 
 
 

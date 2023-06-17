@@ -145,8 +145,27 @@ class calculator_currency extends calculator_abstract
 
     private function kurstWalutaPln($waluta)
     {
-        $con = mysqli_connect('localhost', 'root', '', 'bank_db');
-        $sql = 'SELECT kurs FROM currencies WHERE waluta = '."\"$waluta\"";
+        if (!$_SESSION['currency_db'])
+        {
+            switch ($waluta)
+            {
+                case 'USD':
+                {
+                    return 4.00;
+                }
+                case 'EUR':
+                {
+                    return 4.40;
+                }
+                default:
+                {
+                    return 1;
+                }
+            }
+        }
+
+        $con = mysqli_connect('localhost', 'root', '', 'currency_db');
+        $sql = 'SELECT exchange_rate FROM currencies WHERE currency = '."\"$waluta\"";
         $result = mysqli_query($con, $sql);
 
         return floatval(implode(mysqli_fetch_all($result)[0]));
@@ -154,8 +173,24 @@ class calculator_currency extends calculator_abstract
 
     private function kurstPlnWaluta($waluta)
     {
-        $con = mysqli_connect('localhost', 'root', '', 'bank_db');
-        $sql = 'SELECT kurs FROM currencies WHERE waluta = '."\"$waluta\"";
+        switch ($waluta)
+        {
+            case 'USD':
+            {
+                return 0.25;
+            }
+            case 'EUR':
+            {
+                return 0.23;
+            }
+            default:
+            {
+                return 1;
+            }
+        }
+
+        $con = mysqli_connect('localhost', 'root', '', 'currency_db');
+        $sql = 'SELECT exchange_rate FROM currencies WHERE currency = '."\"$waluta\"";
         $result = mysqli_query($con, $sql);
 
         return round(1/floatval(implode(mysqli_fetch_all($result)[0]))*100)/100;

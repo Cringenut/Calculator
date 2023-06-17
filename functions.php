@@ -13,6 +13,20 @@ function isLanguageDatabaseActive()
     }
 }
 
+function isCurrencyDatabaseActive()
+{
+    try {
+        $con = mysqli_connect('localhost', 'root', '', 'currency_db');
+        $_SESSION['currency_db'] = true;
+        return;
+    }
+    catch(Exception $e) {
+        $_SESSION['currency_db'] = false;
+        return;
+    }
+}
+
+
 if (!isset($_SESSION['calculator']))
 {
     $_SESSION['calculator'] = null;
