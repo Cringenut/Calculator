@@ -75,7 +75,6 @@ isCurrencyDatabaseActive();
                 $_SESSION['button'] = "calculate_loan";
                 $_SESSION['calculator'] = new calculator_loan();
                 $_SESSION['calculator']->calculate();
-                header( "Location: index.php" );
             }
             ?>
 
@@ -109,7 +108,6 @@ isCurrencyDatabaseActive();
                 $_SESSION['button'] = "calculate_investment";
                 $_SESSION['calculator'] = new calculator_investment();
                 $_SESSION['calculator']->calculate();
-                header( "Location: index.php" );
             }
             ?>
         </div>
@@ -152,7 +150,6 @@ isCurrencyDatabaseActive();
                 $_SESSION['button'] = "calculate_currency";
                 $_SESSION['calculator'] = new calculator_currency();
                 $_SESSION['calculator']->calculate();
-                header( "Location: index.php" );
             }
             ?>
         </div>
