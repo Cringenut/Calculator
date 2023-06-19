@@ -31,7 +31,7 @@ isCurrencyDatabaseActive();
         <?php if ($_SESSION['language_db']) { ?>
         <div class="dropdown">
             <button class="dropbtn" style="background-image: url( <?php if (getLanguageCookie() != "polish") {echo "visual/united-states.png";} else {echo "visual/poland.png";} ?>)"></button>
-            <div class="dropdown-content" st>
+            <div class="dropdown-content">
                 <a href="language.php" style="background-image: url( <?php if (getLanguageCookie() == "polish") {echo "visual/united-states.png";} else {echo "visual/poland.png";} ?>)"></a>
             </div>
         </div>
