@@ -41,7 +41,6 @@ isCurrencyDatabaseActive();
         </a>
     </div>
 
-
     <div class="container">
         <div class="calculator">
             <h2 style="height: 12px"><?php getTextInLanguage("Calculator_loan", getLanguageCookie(), "Kalkulator kredytowy");?></h2>
