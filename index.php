@@ -62,7 +62,6 @@ isCurrencyDatabaseActive();
 
                 <input type="submit" name="calculate_loan" value="<?php getTextInLanguage("Calculate", getLanguageCookie(), "Calculate");?>" id="calculate_loan">
             </form>
-
             <?php
             if (isset($_SESSION['calculator']) && get_class($_SESSION['calculator']) == "calculator_loan" && isset($_SESSION['button']) && $_SESSION['button'] == "calculate_loan")
             {
@@ -95,7 +94,6 @@ isCurrencyDatabaseActive();
 
                 <input type="submit" name="calculate_investment" value="<?php getTextInLanguage("Calculate", getLanguageCookie(), "Calculate");?>" id="calculate_investment">
             </form>
-
             <?php
             if (isset($_SESSION['calculator']) && get_class($_SESSION['calculator']) == "calculator_investment" && isset($_SESSION['button']) && $_SESSION['button'] == "calculate_investment")
             {
@@ -137,7 +135,6 @@ isCurrencyDatabaseActive();
 
                 <input type="submit" name="calculate_currency" value="<?php getTextInLanguage("Calculate", getLanguageCookie(), "Calculate");?>" id="calculate_currency">
             </form>
-
             <?php
             if (isset($_SESSION['calculator']) && get_class($_SESSION['calculator']) == "calculator_currency" && isset($_SESSION['button']) && $_SESSION['button'] == "calculate_currency")
             {
