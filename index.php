@@ -122,7 +122,6 @@ isCurrencyDatabaseActive();
                     <option value="PLN">PLN</option>
                     <option value="USD">USD</option>
                     <option value="EUR">EUR</option>
-                    <
                 </select>
 
                 <label for="to_currency"><?php getTextInLanguage("Currency_to", getLanguageCookie(), "Waluta na");?>:</label>
